@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+      <div class="jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+      </div>
+      
+          <h2> Latest Mars News </h2>
+          <h4> {{marsdata.news_title}} </h4>
+          <p> {{marsdata.news_p}} </p>
+    
+      <div class="row">
+        <div class="col-md-8">
+              <h2> Featured Mars Image </h2>
+              <img src="{{marsdata.featured_image_url}}" alt = "featured mars image" width=700px height=600px>
+        </div>
+        <div class="col-md-4" >
+          <h4> Mars Facts </h4>
+          <style>
+						table { border: 1px solid black;}
+						th,td {	padding: 3px; line-height: 3rem;}
+					</style>
+          {{marsdata.Table | safe }} 
+        </div>
+      </div>
+          <h2 class="text-center"> Mars Hemispheres </h2>
+          <div class="card">
+            <div class="row">    
+          <hr>
+          {% for x in marsdata.hemisphere_image_urls %}
+            <div class="col-md-6">
+                <img class="card-img-top" src="https://astrogeology.usgs.gov/{{x.img_url | safe}}" 
+                style="padding-right: 20px; padding left: 20px;"
+                alt="Card image cap" width=400px height=400px;>
+                <div class="card-body">
+                  <p class="card-text" style=" font-weight: bold;"> {{x.title}} </p>
+                </div>
+            </div>
+          {% endfor %} 
+        </div>
+      </div>
+    </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </body>
+
+   
+  </html>
+  
+  
